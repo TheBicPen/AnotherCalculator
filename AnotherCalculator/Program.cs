@@ -14,6 +14,8 @@ namespace AnotherCalculator
         const string operatorRequest = "Please input an operator";
 
 
+        const string operatorList = "m d a s ^ p ";
+
 
         public static char Initialize()
         {
@@ -28,20 +30,40 @@ namespace AnotherCalculator
         static void Main(string[] args)
         {
             decimal result= new decimal();
-            char operation = Initialize();
-
-            switch (operation)
+            while (true)
             {
-                case 'm':
-                    result = Calc.Multiply(RequestNumber(), RequestNumber());
-                    break;
+                char operation = Initialize();
 
-                default:
-                    Console.WriteLine("invalid operator");
-                    break;
+                if (operatorList.Contains(operation))
+                {
+                    switch (operation)
+                    {
+                        case 'm':
+                            result = Calc.Multiply(RequestNumber(), RequestNumber());
+                            break;
+                        case 'd':
+                            result = Calc.Divide(RequestNumber(), RequestNumber());
+                            break;
+                        case 's':
+                            result = Calc.Subtract(RequestNumber(), RequestNumber());
+                            break;
+                        case '^':
+                        case 'p':
+                            result = Calc.Power((int.Parse(RequestNumber().ToString())), ((int.Parse(RequestNumber().ToString()));
+                            break;
+                        case 'a':
+                            result = Calc.Add(RequestNumber(), RequestNumber());
+                            break;
+
+
+                        default:
+                            Console.WriteLine("invalid operator");
+                            break;
+                    }
+                    Console.WriteLine(result);
+                }
+                else { Console.WriteLine("invalid operator"); }
             }
-            Console.WriteLine(result);
-            Console.ReadLine();
         }
 
         public static decimal RequestNumber()
@@ -62,7 +84,7 @@ namespace AnotherCalculator
         public int Number1;
         public int Number2;
 
-        //operations
+        //operations with decimals
 
         public static decimal Multiply(decimal d1, decimal d2)
         {
@@ -84,15 +106,50 @@ namespace AnotherCalculator
             return d1 - d2;
         }
 
-        public static decimal Power(decimal d1, decimal d2)
+        //operations with integers
+        public static int Multiply(int d1, int d2)
         {
-            decimal output = 1;
+            return d1 * d2;
+        }
 
-            for (int i = 0; i < d2; i++)
+        public static int Divide(int d1, int d2)
+        {
+            return d1 / d2;
+        }
+
+        public static int Add(int d1, int d2)
+        {
+            return d1 + d2;
+        }
+
+        public static int Subtract(int d1, int d2)
+        {
+            return d1 - d2;
+        }
+
+        public static decimal Power(int d1, int d2)
+        {
+            if(d2 > 0)
             {
-                output = output * d1;
+                decimal output = 1;
+
+                for (int i = 0; i < d2; i++)
+                {
+                    output = output * d1;
+                }
+                return output;
             }
-            return output;
+            else if(d2 < 0)
+            {
+                decimal output = d1;
+
+                for (int i = 0; i >= d2; i--)
+                {
+                    output = output / d1;
+                }
+                return output;
+            }
+            else { return 0; }
         }
     }
 }
