@@ -27,9 +27,29 @@ namespace AnotherCalculator
             return operation;
         }
 
+        public char InterpretOperatorChar(char input) //function to interpret an operator character
+        {
+            switch (input)
+            {
+                case 'm':
+                    return '*';
+                case 'd':
+                    return '/';
+                case 's':
+                    return '-';
+                case '^':
+                case 'p':
+                    return '^';
+                case 'a':
+                    return '+';
+                default:
+                    throw new LogicException();
+            }
+         }
+
         static void Main(string[] args)
         {
-            decimal result= new decimal();
+            decimal result = new decimal();
             while (true)
             {
                 char operation = Initialize();
@@ -38,23 +58,21 @@ namespace AnotherCalculator
                 {
                     switch (operation)
                     {
-                        case 'm':
+                        case '*':
                             result = Calc.Multiply(RequestNumber(), RequestNumber());
                             break;
-                        case 'd':
+                        case '/':
                             result = Calc.Divide(RequestNumber(), RequestNumber());
                             break;
-                        case 's':
+                        case '-':
                             result = Calc.Subtract(RequestNumber(), RequestNumber());
                             break;
                         case '^':
-                        case 'p':
-                            result = Calc.Power((int.Parse(RequestNumber().ToString())), ((int.Parse(RequestNumber().ToString()));
+                            result = Calc.Power((int.Parse(RequestNumber().ToString())), int.Parse(RequestNumber().ToString()));
                             break;
-                        case 'a':
+                        case '+':
                             result = Calc.Add(RequestNumber(), RequestNumber());
                             break;
-
 
                         default:
                             Console.WriteLine("invalid operator");
@@ -151,5 +169,11 @@ namespace AnotherCalculator
             }
             else { return 0; }
         }
+    }
+
+
+    public class LogicException : Exception
+    {
+        public LogicException() { }
     }
 }
