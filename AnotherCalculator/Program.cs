@@ -14,7 +14,7 @@ namespace AnotherCalculator
         const string operatorRequest = "Please input an operator";
 
 
-        const string operatorList = "m d a s ^ p ";
+        const string operatorList = "+ / * - ^";
 
 
         public static char Initialize()
@@ -22,12 +22,12 @@ namespace AnotherCalculator
             char operation;
             Console.WriteLine(initMessage);
             Console.WriteLine(operatorRequest);
-            operation = Console.ReadKey().KeyChar;
+            operation = InterpretOperatorChar(Console.ReadKey().KeyChar);
             Console.WriteLine();
             return operation;
         }
 
-        public char InterpretOperatorChar(char input) //function to interpret an operator character
+        public static char InterpretOperatorChar(char input) //function to interpret an operator character
         {
             switch (input)
             {
