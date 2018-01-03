@@ -132,7 +132,17 @@ namespace AnotherCalculator
 
         public static int Divide(int d1, int d2)
         {
-            return d1 / d2;
+            if(d2 == 0)
+            {
+                return 0;                             //rewrite this garbage
+                throw new DivideByZeroException();
+            }
+
+            else if (d2 != 0)
+            {
+                return d1 / d2;
+            }
+            else { return 0; }
         }
 
         public static int Add(int d1, int d2)
