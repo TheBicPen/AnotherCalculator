@@ -49,7 +49,8 @@ namespace AnotherCalculator
                             break;
                         case '^':
                         case 'p':
-                            result = Calc.Power((int.Parse(RequestNumber().ToString())), ((int.Parse(RequestNumber().ToString()));
+                            //convert decimal to string, then parse it as an int
+                            result = Calc.Power(int.Parse(RequestNumber().ToString()), int.Parse(RequestNumber().ToString()));
                             break;
                         case 'a':
                             result = Calc.Add(RequestNumber(), RequestNumber());
