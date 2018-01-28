@@ -29,22 +29,22 @@ namespace AnotherCalculator
 
         public static char InterpretOperatorChar(char input) //function to interpret an operator character
         {
-            switch (input)
-            {
-                case 'm':
-                    return '*';
-                case 'd':
-                    return '/';
-                case 's':
-                    return '-';
-                case '^':
-                case 'p':
-                    return '^';
-                case 'a':
-                    return '+';
-                default:
-                    throw new LogicException();
-            }
+                switch (input)
+                {
+                    case 'm':
+                        return '*';
+                    case 'd':
+                        return '/';
+                    case 's':
+                        return '-';
+                    case '^':
+                    case 'p':
+                        return '^';
+                    case 'a':
+                        return '+';
+                    default:
+                        return '0';
+                }
          }
 
         static void Main(string[] args)
