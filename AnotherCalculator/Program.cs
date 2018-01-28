@@ -11,7 +11,7 @@ namespace AnotherCalculator
         //messages stored as constants
         const string inputRequest = "Input a number";
         const string initMessage = "\nYet another calculator!";
-        const string operatorRequest = "Please input an operator or \"L\" for a list of operators";
+        const string operatorRequest = "Please input an operator, \"L\" for a list of operators, or \"X\" to exit the program";
 
         const string operatorList = "+ / * - ^";
 
@@ -28,6 +28,10 @@ namespace AnotherCalculator
                 Console.WriteLine("\n" + "Possible operators: " + operatorList);
                 return 'L';
             }
+            else if(operation == 'X')
+            {
+                Environment.Exit(0);
+            }
             else
             {
                 operation = InterpretOperatorChar(operation);
@@ -41,15 +45,20 @@ namespace AnotherCalculator
         {
                 switch (input)
                 {
+                    case 'M':
                     case 'm':
                         return '*';
+                    case 'D':
                     case 'd':
                         return '/';
+                    case 'S':
                     case 's':
                         return '-';
                     case '^':
+                    case 'P':
                     case 'p':
                         return '^';
+                    case 'A':
                     case 'a':
                         return '+';
                     default:
