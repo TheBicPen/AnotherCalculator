@@ -30,7 +30,7 @@ namespace AnotherCalculator
             }
             else
             {
-                InterpretOperatorChar(operation);
+                operation = InterpretOperatorChar(operation);
             }
 
             Console.WriteLine();
