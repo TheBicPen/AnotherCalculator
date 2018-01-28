@@ -10,9 +10,8 @@ namespace AnotherCalculator
     {
         //messages stored as constants
         const string inputRequest = "Input a number";
-        const string initMessage = "For your calculating pleasure";
-        const string operatorRequest = "Please input an operator";
-
+        const string initMessage = "\nYet another calculator!";
+        const string operatorRequest = "Please input an operator or \"L\" for a list of operators";
 
         const string operatorList = "+ / * - ^";
 
@@ -22,7 +21,18 @@ namespace AnotherCalculator
             char operation;
             Console.WriteLine(initMessage);
             Console.WriteLine(operatorRequest);
-            operation = InterpretOperatorChar(Console.ReadKey().KeyChar);
+            operation = Console.ReadKey().KeyChar;
+
+            if (operation == 'L')
+            {
+                Console.WriteLine("\n" + "Possible operators: " + operatorList);
+                return 'L';
+            }
+            else
+            {
+                InterpretOperatorChar(operation);
+            }
+
             Console.WriteLine();
             return operation;
         }
@@ -80,6 +90,8 @@ namespace AnotherCalculator
                     }
                     Console.WriteLine(result);
                 }
+                else if (operation == 'L')  { }
+
                 else { Console.WriteLine("invalid operator"); }
             }
         }
