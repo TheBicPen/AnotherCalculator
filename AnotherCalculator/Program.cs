@@ -215,7 +215,7 @@ namespace AnotherCalculator
                 }
                 return output;
             }
-            else { return 0; }
+            else { return 1; }
         }
     }
 
