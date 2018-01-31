@@ -10,11 +10,10 @@ namespace AnotherCalculator
     {
         //messages stored as constants
         const string inputRequest = "Input a number";
-        const string initMessage = "For your calculating pleasure";
-        const string operatorRequest = "Please input an operator";
+        const string initMessage = "\nYet another calculator!";
+        const string operatorRequest = "Please input an operator, \"L\" for a list of operators, or \"X\" to exit the program";
 
-
-        const string operatorList = "m d a s ^ p ";
+        const string operatorList = "+ / * - ^";
 
 
         public static char Initialize()
@@ -23,13 +22,53 @@ namespace AnotherCalculator
             Console.WriteLine(initMessage);
             Console.WriteLine(operatorRequest);
             operation = Console.ReadKey().KeyChar;
+
+            if (operation == 'L')
+            {
+                Console.WriteLine("\n" + "Possible operators: " + operatorList);
+                return 'L';
+            }
+            else if(operation == 'X')
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                operation = InterpretOperatorChar(operation);
+            }
+
             Console.WriteLine();
             return operation;
         }
 
+        public static char InterpretOperatorChar(char input) //function to interpret an operator character
+        {
+                switch (input)
+                {
+                    case 'M':
+                    case 'm':
+                        return '*';
+                    case 'D':
+                    case 'd':
+                        return '/';
+                    case 'S':
+                    case 's':
+                        return '-';
+                    case '^':
+                    case 'P':
+                    case 'p':
+                        return '^';
+                    case 'A':
+                    case 'a':
+                        return '+';
+                    default:
+                        return '0';
+                }
+         }
+
         static void Main(string[] args)
         {
-            decimal result= new decimal();
+            decimal result = new decimal();
             while (true)
             {
                 char operation = Initialize();
@@ -38,24 +77,21 @@ namespace AnotherCalculator
                 {
                     switch (operation)
                     {
-                        case 'm':
+                        case '*':
                             result = Calc.Multiply(RequestNumber(), RequestNumber());
                             break;
-                        case 'd':
+                        case '/':
                             result = Calc.Divide(RequestNumber(), RequestNumber());
                             break;
-                        case 's':
+                        case '-':
                             result = Calc.Subtract(RequestNumber(), RequestNumber());
                             break;
                         case '^':
-                        case 'p':
-                            //convert decimal to string, then parse it as an int
-                            result = Calc.Power(int.Parse(RequestNumber().ToString()), int.Parse(RequestNumber().ToString()));
+                            result = Calc.Power((int.Parse(RequestNumber().ToString())), int.Parse(RequestNumber().ToString()));
                             break;
-                        case 'a':
+                        case '+':
                             result = Calc.Add(RequestNumber(), RequestNumber());
                             break;
-
 
                         default:
                             Console.WriteLine("invalid operator");
@@ -63,6 +99,8 @@ namespace AnotherCalculator
                     }
                     Console.WriteLine(result);
                 }
+                else if (operation == 'L')  { }
+
                 else { Console.WriteLine("invalid operator"); }
             }
         }
@@ -115,7 +153,17 @@ namespace AnotherCalculator
 
         public static int Divide(int d1, int d2)
         {
-            return d1 / d2;
+            if(d2 == 0)
+            {
+                return 0;                             //rewrite this garbage
+                throw new DivideByZeroException();
+            }
+
+            else if (d2 != 0)
+            {
+                return d1 / d2;
+            }
+            else { return 0; }
         }
 
         public static int Add(int d1, int d2)
@@ -152,5 +200,11 @@ namespace AnotherCalculator
             }
             else { return 0; }
         }
+    }
+
+
+    public class LogicException : Exception
+    {
+        public LogicException() { }
     }
 }
