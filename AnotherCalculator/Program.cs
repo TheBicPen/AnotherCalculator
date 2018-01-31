@@ -95,7 +95,9 @@ namespace AnotherCalculator
                             result = Calc.Subtract(num1, num2);
                             break;
                         case '^':
-                            result = Calc.Power((int.Parse(num1.ToString())), int.Parse(num2.ToString()));
+                            int int1 = Convert.ToInt32(num1);
+                            int int2 = Convert.ToInt32(num2);
+                            result = Calc.Power(int1,int2);
                             break;
                         case '+':
                             result = Calc.Add(num1, num2);
