@@ -82,6 +82,8 @@ namespace AnotherCalculator
                 {
                     decimal num1 = RequestNumber();
                     decimal num2 = RequestNumber();
+                    int int1 = new int();
+                    int int2 = new int();
 
                     switch (operation)
                     {
@@ -95,8 +97,8 @@ namespace AnotherCalculator
                             result = Calc.Subtract(num1, num2);
                             break;
                         case '^':
-                            int int1 = Convert.ToInt32(num1);
-                            int int2 = Convert.ToInt32(num2);
+                             int1 = Convert.ToInt32(num1);
+                             int2 = Convert.ToInt32(num2);
                             result = Calc.Power(int1,int2);
                             break;
                         case '+':
@@ -106,7 +108,14 @@ namespace AnotherCalculator
                             Console.WriteLine("invalid operator");
                             break;
                     }
-                    Console.WriteLine(num1 + operation.ToString() + num2 + "=" + result);
+                    if (operation == '^')
+                    {
+                        Console.WriteLine("Required conversions:\n {0} -> {1}\n {2} -> {3}\n", num1, int1, num2, int2); //display conversions from ints to decimals
+                        Console.WriteLine(int1 + operation.ToString() + int2 + "=" + result);
+                    }
+                    else
+                    { Console.WriteLine(num1 + operation.ToString() + num2 + "=" + result); }
+                    
                 }
                 else if (operation == 'L')  { }
 
@@ -184,25 +193,25 @@ namespace AnotherCalculator
             return d1 - d2;
         }
 
-        public static decimal Power(int d1, int d2)
+        public static decimal Power(int i1, int i2)
         {
-            if(d2 > 0)
+            if(i2 > 0) //for positive exponents, multiply 1 by i1, i2 times
             {
                 decimal output = 1;
 
-                for (int i = 0; i < d2; i++)
+                for (int i = 0; i < i2; i++)
                 {
-                    output = output * d1;
+                    output *= i1;
                 }
                 return output;
             }
-            else if(d2 < 0)
+            else if(i2 < 0) //for negative exponents, divide i1 by i1, i2 times
             {
-                decimal output = d1;
+                decimal output = i1;
 
-                for (int i = 0; i >= d2; i--)
+                for (int i = 0; i >= i2; i--)
                 {
-                    output = output / d1;
+                    output /= i1;
                 }
                 return output;
             }
