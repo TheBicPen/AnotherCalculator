@@ -80,29 +80,31 @@ namespace AnotherCalculator
 
                 if (operatorList.Contains(operation))
                 {
+                    decimal num1 = RequestNumber();
+                    decimal num2 = RequestNumber();
+
                     switch (operation)
                     {
                         case '*':
-                            result = Calc.Multiply(RequestNumber(), RequestNumber());
+                            result = Calc.Multiply(num1, num2);
                             break;
                         case '/':
-                            result = Calc.Divide(RequestNumber(), RequestNumber());
+                            result = Calc.Divide(num1, num2);
                             break;
                         case '-':
-                            result = Calc.Subtract(RequestNumber(), RequestNumber());
+                            result = Calc.Subtract(num1, num2);
                             break;
                         case '^':
-                            result = Calc.Power((int.Parse(RequestNumber().ToString())), int.Parse(RequestNumber().ToString()));
+                            result = Calc.Power((int.Parse(num1.ToString())), int.Parse(num2.ToString()));
                             break;
                         case '+':
-                            result = Calc.Add(RequestNumber(), RequestNumber());
+                            result = Calc.Add(num1, num2);
                             break;
-
                         default:
                             Console.WriteLine("invalid operator");
                             break;
                     }
-                    Console.WriteLine(result);
+                    Console.WriteLine(num1 + operation.ToString() + num2 + "=" + result);
                 }
                 else if (operation == 'L')  { }
 
