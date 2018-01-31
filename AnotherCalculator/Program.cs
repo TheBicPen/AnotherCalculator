@@ -43,6 +43,10 @@ namespace AnotherCalculator
 
         public static char InterpretOperatorChar(char input) //function to interpret an operator character
         {
+            if (operatorList.Contains(input))
+            { return input; }
+            else
+            {
                 switch (input)
                 {
                     case 'M':
@@ -64,6 +68,7 @@ namespace AnotherCalculator
                     default:
                         return '0';
                 }
+            }
          }
 
         static void Main(string[] args)
@@ -113,7 +118,6 @@ namespace AnotherCalculator
             bool parsed = decimal.TryParse(Console.ReadLine(), out result);
             return result;
         }
-
 
     }
 
